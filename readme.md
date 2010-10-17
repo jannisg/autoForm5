@@ -1,21 +1,27 @@
 # autoForm5 : A non judgmental HTML5 form plugin for jQuery.
 
-*First commit of this little project.*
+**DEMO:** <http://gundermann.me/playground/autoform5/>
+
+**TODO:**
+
+* min/max/maxlength support
+* ajax form submission option *(gotta learn that ajax thing first eh')*
+* read a full documentation of this plugin
 
 This plugin adds some basic html5 form element support to existing web browser including IE6,7,8, Firefox, Google Chrome for Mac, Safari 5 (enhancements).
 
 ## Supported HTML5 form input attributes are:
 
-    * placeholder
-    * required
-    * autofocus
+* placeholder
+* required
+* autofocus
 
 ## Supported HTML5 form input types are:
 
-    * tel
-    * number
-    * email
-    * url
+* tel
+* number
+* email
+* url
  
 In addition to adding support for the above things the form is validated on submit, with error classes being applied to failed input elements and live error checking on required fields.
 
