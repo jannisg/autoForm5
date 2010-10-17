@@ -6,6 +6,7 @@ This plugin adds some basic html5 form element support to existing web browser i
 
 ## Supported HTML5 form input attributes are:
 
+    * placeholder
     * required
     * autofocus
 
