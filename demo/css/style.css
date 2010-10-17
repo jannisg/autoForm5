@@ -1,0 +1,126 @@
+/* ================= */
+/* = STICKY FOOTER = */
+/* ================= */
+html, body {
+	height: 100%;
+}
+#wrap {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+width: 960px;
+margin: 0 auto -40px;
+position: relative;
+padding:0;
+}
+footer, .push {
+height: 40px;
+clear: both;
+}
+footer {
+	display: block;
+	position: relative;
+	text-align: center;
+	width: 960px;
+	margin: 0 auto;
+}
+footer p {
+	font-size: 10px;
+	text-transform: uppercase;
+}
+html {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-attachment: fixed;
+	background-image: -moz-linear-gradient(0% 100% 90deg,rgba(255,255,255,0.5), rgba(255,255,255,0.1));
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.1)), to(rgba(255,255,255,0.5)));
+	background-color: #ccc;
+	font: 14px/1.4 helvetica,arial,sans-serif;
+}
+form {
+	padding: 10px 20px 20px;
+	background-color: rgba(255,255,255,0.3);
+}
+fieldset {
+	padding-top: 10px;
+	background-color: #fff;
+	background-color: rgba(255,255,255,0.5);
+}
+legend {
+	background-color: #fff;
+	border: 1px dotted #eee;
+}
+h1 {
+    font: bold 24px/1 Helvetica, Arial, sans-serif;
+    color: #000;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #000;
+}
+h2 {
+    font: bold 18px/1 Helvetica, Arial, sans-serif;
+    color: #212121;
+}
+h3 {
+	font: bold 18px/1 Helvetica, Arial, sans-serif;
+    color: #212121;
+}
+p {
+    margin: 0 0 10px;
+}
+form {
+	margin: 50px 0 30px;
+}
+label {
+    color: #333;
+    font: bold 12px/1 Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+	margin: 15px 0 0;
+	display: inline-block;
+}
+em {
+	font: italic 12px/1 Georgia, Times, serif;
+    text-transform: none;
+    color: #aaa;
+}
+input, textarea {
+    font: 14px/1.4 Helvetica, Arial, sans-serif;
+    letter-spacing: 0.5px;
+    padding: 8px 10px;
+    background: #fafafa;
+    border: 1px solid #eee;
+	width: 97.5%;
+}
+textarea {min-height: 100px;}
+input[type=submit] {
+	width: 150px;
+    font: bold 12px/1 Helvetica, Arial, sans-serif;
+    letter-spacing: -0.5px;
+	position: relative;
+	left:20px;
+}
+fieldset {
+	border: 1px dotted #ddd;
+	margin: 20px 0;
+	padding: 0 20px 20px;
+}
+legend {
+	font: bold 11px/1 Helvetica, Arial, sans-serif;
+	letter-spacing: 2px;
+	color: #000;
+	text-transform: uppercase;
+	padding: 5px 10px;
+}
+hr {
+  border: 0;
+  border-top: 1px solid #000;
+  border-bottom-color: #fff;
+  border-top-color: rgba(0,0,0,0.1);
+  border-bottom-color: rgba(255,255,255,0.3);
+  filter: alpha(opacity = 30);
+  clear: both;
+  height: 0;
+  margin: 15px 0;
+}
