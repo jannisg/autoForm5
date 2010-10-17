@@ -1,5 +1,7 @@
 # autoForm5 : A non judgmental HTML5 form plugin for jQuery.
 
+This plugin adds some basic html5 form element support to existing web browser including IE6,7,8, Firefox, Google Chrome for Mac, Safari 5 (enhancements).
+
 **DEMO:** <http://gundermann.me/playground/autoform5/>
 
 **TODO:**
@@ -7,8 +9,6 @@
 * min/max/maxlength support
 * ajax form submission option *(gotta learn that ajax thing first eh')*
 * read a full documentation of this plugin
-
-This plugin adds some basic html5 form element support to existing web browser including IE6,7,8, Firefox, Google Chrome for Mac, Safari 5 (enhancements).
 
 ## Supported HTML5 form input attributes are:
 
