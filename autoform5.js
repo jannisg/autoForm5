@@ -26,14 +26,14 @@
 					fieldset	: 'af5-activefieldset',	// added to the fieldset that is the parent of the currently focussed field
 					error		: 'af5-error', 			// added to fields that fail validation (on form submit and during live checking)
 					required	: 'af5-required',		// added to fields that are required (on ready)
-					passive		: 'af5-passive',			// added to fields that are not currently focussed (on ready)
+					passive		: 'af5-passive',		// added to fields that are not currently focussed (on ready)
 					active		: 'af5-active',			// added to the currently focussed field
-					interim		: 'af5-interim',			// added to a field that is displaying the data-instructions text (if any)
+					interim		: 'af5-interim',		// added to a field that is displaying the data-instructions text (if any)
 					filled		: 'af5-filled'			// added to fields that have a user entered value
 				},
 				
 				pattern : {
-					tel		: 	/(?!:\A|\s)(?!(\d{1,6}\s+\D)|((\d{1,2}\s+){2,2}))(((\+\d{1,3})|(\(\+\d{1,3}\)))\s*)?((\d{1,6})|(\(\d{1,6}\)))\/?(([ -.]?)\d{1,5}){1,5}((\s*(#|x|(ext))\.?\s*)\d{1,5})?(?!:(\Z|\w|\b\s))/,
+					tel		: 	/^((\+\d{1,3}? ?\d{1,3}? ?[\d\- \(\)]{7,15})|([\-\ \(\)\d]{6,20}))$/,
 					email	: 	/^(\w|\.|-)+?@(\w|-)+?\.\w{2,4}($|\.\w{2,4})$/,
 					number	: 	/^\d+$/,
 					url		: 	/(https?:\/\/)?(www\.)?([a-zA-Z0-9_%]*)\b\.[a-z]{2,4}(\.[a-z]{2})?((\/[a-zA-Z0-9_%]*)+)?(\.[a-z]*)?/,
@@ -129,7 +129,7 @@
 									if (!$.support.input.email || !$.support.input.tel || !$.support.input.url || !$.support.input.number ) { // if not natively supported
 										if ((AF5.validation.validate( self[0].value , self[0].getAttribute('type')))) { // validate
 											self.removeClass(o.classes.error); // on success remove error class
-										} else {
+										} else if ( self.val() != "" ) {
 											self.addClass(o.classes.error); // on fail re-add error class
 										}
 									}
@@ -142,9 +142,11 @@
 						
 						// Add error checking while you type
 						self.bind('keyup', function(e) {
-						  	if (self.is('.'+o.classes.error) && e.type == "keyup" && (AF5.validation.validate( self[0].value , self[0].getAttribute('type')))) {
+						  	if (self.is('.'+o.classes.error) && (AF5.validation.validate( self[0].value , self[0].getAttribute('type')))) {
 								self.removeClass(o.classes.error);
-						 	}
+						 	} else if ( self.val() == "" ) {
+								self.removeClass(o.classes.error).removeClass(o.classes.filled);
+							}
 						});
 					
 					});
@@ -178,16 +180,16 @@
 				// =====================
 				function validate(fields) { // fields = failed elements
 					$.each(fields, function(i, ele) {
-					  	$(ele).addClass(o.classes.error); // add classes
+					  	$(ele).addClass(o.classes.error).removeClass(o.classes.filled); // add classes
 					
-						// if the field has a data-error attribute, set it as the value but ONLY AF5 the field has no user entered information
+						// if the field has a data-error attribute, set it as the value but ONLY IF the field has no user entered information
 						if ($(ele).attr('data-error') && ele.value == "" || ele.value == interim(ele,true) || ele.value == $(ele).attr('placeholder')) {$(ele).val($(ele).attr('data-error'));}
 						
 						$(ele).bind('keyup blur change', function(e) { // add value monitoring for live validation feedback
 							if ((AF5.validation.validate( ele.value , ele.getAttribute('type')))) {
-								$(ele).removeClass(o.classes.error); // remove error class
+								$(ele).removeClass(o.classes.error).addClass(o.classes.filled); // remove error class
 							} else {
-								$(ele).addClass(o.classes.error); // re-add error class
+								$(ele).addClass(o.classes.error).removeClass(o.classes.filled); // re-add error class
 							};
 							
 						});
@@ -220,7 +222,7 @@
 						  	if (e.type == "focus" && self.val() == self.attr('placeholder')) { // when focussed & placeholder is shown (stops it from clearing user entered info)
 
 								if (interim(self)) { // if the iterim state is switched on
-									self.val(interim(self,true)); // show interim text
+									self.val(interim(self,true)).addClass(o.classes.interim); // show interim text
 								} else {
 									self.val(''); // clear field
 								}
@@ -228,11 +230,11 @@
 							} else if (e.type == "blur") { // when blurred
 
 								if ( self.val() == "" || self.val() == interim(self,true) || self.val() == self.attr('data-error')) {
-									self.val(self.attr('placeholder'));
+									self.val(self.attr('placeholder')).removeClass(o.classes.interim);
 								}
 								
 							} else if (e.type == "keydown" && self.val() == interim(self,true) || self.val() == self.attr('data-error')) { // on keydown and if the interim text is visible
-								self.val(''); // clear the field to make room for user input
+								self.val('').removeClass(o.classes.interim); // clear the field to make room for user input
 							}
 						
 						});
@@ -246,11 +248,11 @@
 						
 						self.bind('focus blur keydown', function(e) {
 						  	if (e.type == "focus" && interim(self) && self.val() == "") { // when focussed & placeholder is shown (stops it from clearing user entered info)
-								self.val(interim(self,true)); // show interim text
+								self.val(interim(self,true)).addClass(o.classes.interim); // show interim text
 							} else if (e.type=="blur" && self.val() == interim(self,true) || self.val() == self.attr('data-error')) {
-								self.val('');
+								self.val('').removeClass(o.classes.interim);
 							} else if (e.type == "keydown" && self.val() == interim(self,true) || self.val() == self.attr('data-error')) { // on keydown and if the interim text is visible
-								self.val(''); // clear the field to make room for user input
+								self.val('').removeClass(o.classes.interim); // clear the field to make room for user input
 							}
 						});
 					});
